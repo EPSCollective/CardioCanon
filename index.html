@@ -103,16 +103,18 @@
                 padding: 10px;
             }
             .header {
-                flex-direction: column;
+                justify-content: flex-start;
                 align-items: center;
-                text-align: center;
             }
             .header img {
-                margin-right: 0;
-                margin-bottom: 10px;
+                width: 40px;
+                margin-right: 10px;
             }
             .header h1 {
-                font-size: 24px;
+                font-size: 18px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .chatbot-container {
                 border-width: 2px;
