@@ -36,7 +36,7 @@
         .header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             width: 100%;
             margin-bottom: 10px;
             flex-wrap: nowrap;
@@ -79,11 +79,6 @@
             overflow: hidden;
             position: relative;
         }
-        .chatbot-header, .chatbot-footer {
-            padding: 10px;
-            background-color: rgba(0, 255, 255, 0.1);
-            z-index: 10;
-        }
         .chatbot-content {
             flex: 1;
             overflow-y: auto;
@@ -96,35 +91,7 @@
             background-color: rgba(0, 255, 255, 0.1);
         }
         .chatbot-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #00ffff;
-            border-radius: 5px;
-            background-color: rgba(0, 255, 255, 0.05);
-            color: #00ffff;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .refresh-button, .chatbot-refresh-button {
-            background-color: #00ffff;
-            color: #0a0a2a;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            line-height: 1;
-            margin-left: 10px;
-        }
-        .refresh-button:hover, .chatbot-refresh-button:hover {
-            background-color: #0a0a2a;
-            color: #00ffff;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            display: none; /* Hide the chatbot input */
         }
         @media (min-width: 768px) {
             .container {
@@ -140,9 +107,6 @@
             .header h1 {
                 font-size: 32px;
             }
-            .refresh-button, .chatbot-refresh-button {
-                font-size: 18px;
-            }
         }
         @media (min-width: 1024px) {
             .header img {
@@ -150,9 +114,6 @@
             }
             .header h1 {
                 font-size: 36px;
-            }
-            .refresh-button, .chatbot-refresh-button {
-                font-size: 20px;
             }
         }
     </style>
@@ -162,79 +123,31 @@
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
             <h1>HeartBug Enrolment Report</h1>
-            <button class="refresh-button" id="refresh-btn">↻ Refresh Page</button>
         </div>
         <div class="chatbot-container">
-            <div class="chatbot-header">
-                <button class="chatbot-refresh-button" id="chatbot-refresh">↻ Refresh Chatbot</button>
-            </div>
-            <div class="chatbot-content" id="chatbot-content"></div>
-            <div class="chatbot-footer">
-                <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message here...">
+            <div class="chatbot-content" id="chatbot-content">
+                <flowise-fullchatbot></flowise-fullchatbot>
             </div>
         </div>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        
-        let chatbot;
-        let isInitialMessage = true;
-
-        function createChatbot() {
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            
-            chatbot = new Chatbot({
-                chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
-                apiHost: "https://flowise-9t13.onrender.com",
-                chatflowConfig: {
-                    sessionId: sessionId
-                }
-            });
-
-            // Trigger initial message
-            sendMessage("");
-        }
-
-        function sendMessage(message) {
-            chatbot.sendMessage(message)
-                .then(response => {
-                    if (isInitialMessage) {
-                        handleInitialMessage(response);
-                    } else {
-                        displayMessage(message, 'user');
-                        displayMessage(response, 'bot');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        function handleInitialMessage(response) {
-            const initialMessages = response.split('\n');
-            initialMessages.forEach(msg => {
-                if (msg.trim() !== '') {
-                    displayMessage(msg, 'bot');
-                }
-            });
-            isInitialMessage = false;
-        }
-
-        function displayMessage(message, sender) {
-            const contentDiv = document.getElementById('chatbot-content');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chatbot-message';
-            messageDiv.textContent = `${sender === 'bot' ? 'Bot' : 'You'}: ${message}`;
-            contentDiv.appendChild(messageDiv);
-            contentDiv.scrollTop = contentDiv.scrollHeight;
-        }
+        Chatbot.initFull({
+            chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
+            apiHost: "https://flowise-9t13.onrender.com",
+        })
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            createChatbot();
-
-            document.getElementById('refresh-btn').addEventListener('click', (e) => {
-                e.preventDefault();
-                location.reload();
+            document.getElementById('chatbot-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const message = e.target.value;
+                    if (message.trim() !== '') {
+                        // Handle message sending logic here if required
+                        e.target.value = '';
+                    }
+                }
             });
-
-            document.getElementById('chatbot-refresh').addEventListener('click', (e) => {
-                e.preventDefault();
-                document
+        });
+    </script>
+</body>
+</html>
