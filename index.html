@@ -43,7 +43,7 @@
             position: relative;
         }
         .header img {
-            width: 80px;
+            width: 60px;
             height: auto;
             border-radius: 10px;
             margin-right: 20px;
@@ -76,7 +76,7 @@
             background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow: auto;
             position: relative;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Added glow effect */
             animation: borderGlow 2s infinite alternate; /* Added animation for border glow */
@@ -89,7 +89,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 10px;
-            margin: 0; /* Added small border around chat space */
+            margin: 0; 
             border: 1px solid rgba(0, 255, 255, 0.3); /* Added border for chat space */
             border-radius: 10px;
         }
@@ -100,7 +100,7 @@
             background-color: rgba(0, 255, 255, 0.1);
             word-wrap: break-word;
         }
-        @media (max-width: 580px) {
+        @media (max-width: 550px) {
             .header {
                 flex-direction: column;
                 text-align: center;
@@ -113,7 +113,7 @@
                 font-size: 22px; /* Adjusted for mobile */
             }
             .container {
-                padding: 0;
+                padding: 2px;
             }
         }
     </style>
