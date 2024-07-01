@@ -154,40 +154,44 @@
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
             <h1>HeartBug Enrolment Report</h1>
-            <button class="refresh-button" onclick="location.reload()">↻</button>
+            <button class="refresh-button" id="refresh-btn">↻</button>
         </div>
         <div class="chatbot-container">
-            <flowise-fullchatbot></flowise-fullchatbot>
+            <flowise-fullchatbot id="chatbot"></flowise-fullchatbot>
         </div>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
+        let chatbotInstance = null;
+
         function initChatbot() {
             const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
             
-            const existingChatbot = document.querySelector('flowise-fullchatbot');
-            if (existingChatbot) {
-                existingChatbot.remove();
+            if (chatbotInstance) {
+                chatbotInstance.destroy();
             }
 
-            const newChatbot = document.createElement('flowise-fullchatbot');
-            document.querySelector('.chatbot-container').appendChild(newChatbot);
+            const chatbotContainer = document.getElementById('chatbot');
+            chatbotContainer.innerHTML = '';
 
-            Chatbot.initFull({
+            chatbotInstance = Chatbot.initFull({
                 chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
                 apiHost: "https://flowise-9t13.onrender.com",
                 chatflowConfig: {
                     sessionId: sessionId
-                }
-            })
+                },
+                container: "#chatbot"
+            });
         }
 
-        initChatbot();
-
-        document.querySelector('.refresh-button').addEventListener('click', (e) => {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', (event) => {
             initChatbot();
+
+            document.getElementById('refresh-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                initChatbot();
+            });
         });
     </script>
 </body>
