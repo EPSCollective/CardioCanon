@@ -75,19 +75,23 @@
             display: flex;
             overflow: hidden;
             position: relative;
-            padding: 10px 0;
         }
         flowise-fullchatbot {
             position: absolute;
-            top: 20px;
+            top: 0;
             left: 0;
             right: 0;
-            bottom: 20px;
+            bottom: 0;
             font-size: 12px;
         }
         flowise-fullchatbot::part(chat-window) {
             border-left: none;
             border-right: none;
+            height: 100%;
+            overflow-y: auto;
+        }
+        flowise-fullchatbot::part(chat-messages-container) {
+            padding-bottom: 60px; /* Add space for input box */
         }
         .refresh-button {
             position: absolute;
@@ -98,9 +102,9 @@
             color: #0a0a2a;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            font-size: 32px;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -138,6 +142,9 @@
                 position: static;
                 transform: none;
                 margin-top: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
             }
         }
     </style>
