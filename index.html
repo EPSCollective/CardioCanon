@@ -71,15 +71,16 @@
         .chatbot-container {
             flex: 1;
             width: 100%;
-            height: 30%;
-            border: 0 solid #00ffff;
-            border-radius: 0;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
             background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             overflow: hidden;
             position: relative;
+            height: 75%; /* Set the height to 75% */
         }
+
         .chatbot-content {
             flex: 1;
             overflow-y: auto;
@@ -126,8 +127,8 @@
             <h1>HeartBug Enrolment Report</h1>
         </div>
         <div class="chatbot-container">
-            <div class="chatbot-content" id="chatbot-content">
-                <flowise-fullchatbot></flowise-fullchatbot>
+            <div class="chatbot-content" id="chatbot-content" style="height: 100%;">
+                <flowise-fullchatbot style="height: 100%;"></flowise-fullchatbot>
             </div>
         </div>
     </div>
