@@ -27,7 +27,6 @@
             height: 100%;
             box-sizing: border-box;
             animation: popUp 0.5s ease-out;
-            transition: all 0.3s ease;
         }
         @keyframes popUp {
             0% { transform: scale(0.5); opacity: 0; }
@@ -39,7 +38,6 @@
             width: 100%;
             margin-bottom: 20px;
             flex-wrap: wrap;
-            position: relative;
         }
         .header img {
             width: 150px;
@@ -72,7 +70,6 @@
             border: 4px solid #00ffff;
             border-radius: 20px;
             background-color: rgba(0, 255, 255, 0.05);
-            display: flex;
             overflow: hidden;
             position: relative;
         }
@@ -85,8 +82,7 @@
             font-size: 12px;
         }
         #chatbot::part(chat-window) {
-            border-left: none;
-            border-right: none;
+            border: none;
             padding-top: 20px;
         }
         #chatbot::part(chatbot-container) {
@@ -94,32 +90,6 @@
         }
         #chatbot::part(chat-messages-container) {
             padding-top: 20px;
-        }
-        .refresh-button {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            background-color: #00ffff;
-            color: #0a0a2a;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            line-height: 1;
-        }
-        .refresh-button:hover {
-            background-color: #0a0a2a;
-            color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
         }
         @media (max-width: 768px) {
             .container {
@@ -140,11 +110,6 @@
             .header h1 {
                 font-size: 28px;
             }
-            .refresh-button {
-                position: static;
-                transform: none;
-                margin-top: 15px;
-            }
         }
     </style>
 </head>
@@ -153,7 +118,6 @@
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
             <h1>HeartBug Enrolment Report</h1>
-            <button class="refresh-button" id="refresh-btn">↻</button>
         </div>
         <div class="chatbot-container">
             <flowise-fullchatbot id="chatbot"></flowise-fullchatbot>
@@ -162,31 +126,14 @@
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
-        let chatbotInstance = null;
-
-        function initChatbot() {
-            if (chatbotInstance) {
-                chatbotInstance.destroy();
-            }
-
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            
-            chatbotInstance = Chatbot.initFull({
+        document.addEventListener('DOMContentLoaded', (event) => {
+            Chatbot.initFull({
                 chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
                 apiHost: "https://flowise-9t13.onrender.com",
                 chatflowConfig: {
-                    sessionId: sessionId
+                    sessionId: Date.now().toString(36) + Math.random().toString(36).substr(2)
                 },
                 container: "#chatbot"
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            initChatbot();
-
-            document.getElementById('refresh-btn').addEventListener('click', (e) => {
-                e.preventDefault();
-                initChatbot();
             });
         });
     </script>
