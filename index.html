@@ -76,17 +76,17 @@
             overflow: hidden;
             position: relative;
             padding: 10px 0;
-            max-height: calc(100% - 150px); /* Added this line */
+            max-height: calc(100% - 150px);
         }
         flowise-fullchatbot {
             position: absolute;
-            top: 10px; /* Reduced from 20px */
+            top: 10px;
             left: 0;
             right: 0;
-            bottom: 10px; /* Reduced from 20px */
+            bottom: 10px;
             font-size: 12px;
-            transform: scale(0.95); /* Added this line */
-            transform-origin: top center; /* Added this line */
+            transform: scale(0.95);
+            transform-origin: top center;
         }
         flowise-fullchatbot::part(chat-window) {
             border-left: none;
@@ -150,10 +150,10 @@
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
             <h1>HeartBug Enrolment Report</h1>
-            <button class="refresh-button" onclick="location.reload()">↻</button>
+            <button class="refresh-button" id="refresh-btn">↻</button>
         </div>
         <div class="chatbot-container">
-            <flowise-fullchatbot></flowise-fullchatbot>
+            <flowise-fullchatbot id="chatbot"></flowise-fullchatbot>
         </div>
     </div>
     <script type="module">
@@ -168,6 +168,7 @@
             }
 
             const newChatbot = document.createElement('flowise-fullchatbot');
+            newChatbot.id = 'chatbot';
             document.querySelector('.chatbot-container').appendChild(newChatbot);
 
             Chatbot.initFull({
@@ -181,7 +182,7 @@
 
         initChatbot();
 
-        document.querySelector('.refresh-button').addEventListener('click', (e) => {
+        document.getElementById('refresh-btn').addEventListener('click', (e) => {
             e.preventDefault();
             initChatbot();
         });
