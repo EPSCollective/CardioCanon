@@ -45,9 +45,9 @@
             margin-bottom: 20px;
         }
         .header img {
-            max-width: 80px;
+            width: 120px; /* Increased from 80px */
             height: auto;
-            border-radius: 10px;
+            border-radius: 15px; /* Slightly increased for proportion */
             margin-right: 20px;
             filter: drop-shadow(0 0 10px #00ffff);
         }
@@ -79,14 +79,17 @@
             .header h1 {
                 font-size: 5vw;
             }
+            .header img {
+                width: 80px; /* Adjusted for smaller screens */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="/api/placeholder/80/80" alt="HeartBug Image">
-            <h1>Welcome to the HER (HeartBug Enrolment Report)</h1>
+            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
+            <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
         </div>
         <div class="chatbot-container">
             <flowise-fullchatbot></flowise-fullchatbot>
