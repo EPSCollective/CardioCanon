@@ -15,8 +15,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         .container {
             display: flex;
@@ -30,7 +30,7 @@
             max-width: 800px;
             height: 90vh;
             box-sizing: border-box;
-            overflow-y: auto;
+            overflow: hidden;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
             position: relative;
@@ -46,7 +46,7 @@
             margin-bottom: 20px;
         }
         .header img {
-            width: 120px;
+            width: 80px;
             height: auto;
             border-radius: 15px;
             margin-right: 20px;
@@ -54,7 +54,7 @@
         }
         .header h1 {
             color: #00ffff;
-            font-size: 1.5vw;
+            font-size: 2vw;
             margin: 0;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
@@ -71,6 +71,7 @@
             border: 2px solid #00ffff;
             border-radius: 10px;
             background-color: rgba(0, 255, 255, 0.05);
+            display: flex;
         }
         flowise-fullchatbot {
             width: 100%;
@@ -100,11 +101,16 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
         }
         @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                height: 95vh;
+                padding: 10px;
+            }
             .header h1 {
-                font-size: 5vw;
+                font-size: 4vw;
             }
             .header img {
-                width: 80px;
+                width: 60px;
             }
             .refresh-button {
                 width: 40px;
