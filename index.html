@@ -101,9 +101,9 @@
             color: #0a0a2a;
             border: none;
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            font-size: 80px;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -111,16 +111,6 @@
             transition: all 0.3s ease;
             z-index: 1000;
             animation: buttonGlow 2s infinite alternate;
-            line-height: 1;
-            padding: 0;
-        }
-        .refresh-button span {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            transform: translateY(-2px);
         }
         @keyframes buttonGlow {
             from { box-shadow: 0 0 5px #00ffff; }
@@ -152,9 +142,9 @@
             .refresh-button {
                 top: 10px;
                 right: 10px;
-                width: 60px;
-                height: 60px;
-                font-size: 60px;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
             }
         }
     </style>
@@ -168,7 +158,7 @@
         <div class="chatbot-container">
             <flowise-fullchatbot></flowise-fullchatbot>
         </div>
-        <button class="refresh-button" onclick="location.reload()"><span>↻</span></button>
+        <button class="refresh-button" onclick="location.reload()">↻</button>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
