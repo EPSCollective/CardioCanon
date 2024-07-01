@@ -9,10 +9,23 @@
             font-family: 'Arial, sans-serif';
             background-color: #f0f8ff;
             color: #333;
-            text-align: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        h1 {
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .header h1 {
             color: #ff6347;
             font-family: 'Georgia, serif';
             font-size: 36px;
@@ -22,20 +35,17 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 800px;
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
-        <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
+        <div class="header">
+            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
+            <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
+        </div>
         <flowise-fullchatbot></flowise-fullchatbot>
     </div>
     <script type="module">
