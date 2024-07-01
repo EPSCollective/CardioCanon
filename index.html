@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeartBug Enrolment Report (HER)</title>
+    <style>
+        body {
+            font-family: 'Arial, sans-serif';
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6347;
+            font-family: 'Georgia, serif';
+            font-size: 36px;
+        }
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
-    <flowise-fullchatbot></flowise-fullchatbot>
+    <div class="content">
+        <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
+        <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
+        <flowise-fullchatbot></flowise-fullchatbot>
+    </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         Chatbot.initFull({
