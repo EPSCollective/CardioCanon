@@ -11,10 +11,10 @@
             font-family: 'Orbitron', sans-serif;
             background-color: #0a0a2a;
             color: #00ffff;
-            margin: 5px;
-            padding: 5px;
+            margin: 0;
+            padding: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden;
         }
         .container {
@@ -23,8 +23,8 @@
             padding: 20px;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            width: 95%;
-            height: 95%;
+            width: 100%;
+            height: 100%;
             box-sizing: border-box;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
@@ -37,7 +37,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
             position: relative;
         }
@@ -75,20 +75,16 @@
             display: flex;
             overflow: hidden;
             position: relative;
-            padding: 10px 0;
-            max-height: calc(100% - 150px);
         }
-        flowise-fullchatbot {
+        #chatbot {
             position: absolute;
-            top: 10px;
+            top: 0;
             left: 0;
             right: 0;
-            bottom: 10px;
+            bottom: 0;
             font-size: 12px;
-            transform: scale(0.95);
-            transform-origin: top center;
         }
-        flowise-fullchatbot::part(chat-window) {
+        #chatbot::part(chat-window) {
             border-left: none;
             border-right: none;
         }
@@ -159,32 +155,32 @@
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
+        let chatbotInstance = null;
+
         function initChatbot() {
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            
-            const existingChatbot = document.querySelector('flowise-fullchatbot');
-            if (existingChatbot) {
-                existingChatbot.remove();
+            if (chatbotInstance) {
+                chatbotInstance.destroy();
             }
 
-            const newChatbot = document.createElement('flowise-fullchatbot');
-            newChatbot.id = 'chatbot';
-            document.querySelector('.chatbot-container').appendChild(newChatbot);
-
-            Chatbot.initFull({
+            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            
+            chatbotInstance = Chatbot.initFull({
                 chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
                 apiHost: "https://flowise-9t13.onrender.com",
                 chatflowConfig: {
                     sessionId: sessionId
-                }
-            })
+                },
+                container: "#chatbot"
+            });
         }
 
-        initChatbot();
-
-        document.getElementById('refresh-btn').addEventListener('click', (e) => {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', (event) => {
             initChatbot();
+
+            document.getElementById('refresh-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                initChatbot();
+            });
         });
     </script>
 </body>
