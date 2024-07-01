@@ -76,14 +76,17 @@
             overflow: hidden;
             position: relative;
             padding: 10px 0;
+            max-height: calc(100% - 150px); /* Added this line */
         }
         flowise-fullchatbot {
             position: absolute;
-            top: 20px;
+            top: 10px; /* Reduced from 20px */
             left: 0;
             right: 0;
-            bottom: 20px;
+            bottom: 10px; /* Reduced from 20px */
             font-size: 12px;
+            transform: scale(0.95); /* Added this line */
+            transform-origin: top center; /* Added this line */
         }
         flowise-fullchatbot::part(chat-window) {
             border-left: none;
