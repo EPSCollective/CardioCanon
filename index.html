@@ -73,14 +73,19 @@
             display: flex;
             overflow: hidden;
             position: relative;
+            padding: 10px 0;
         }
         flowise-fullchatbot {
             position: absolute;
-            top: 0;
+            top: 10px;
             left: 0;
             right: 0;
-            bottom: 0;
+            bottom: 10px;
             font-size: 12px;
+        }
+        flowise-fullchatbot::part(chat-window) {
+            border-left: none;
+            border-right: none;
         }
         .refresh-button {
             position: fixed;
