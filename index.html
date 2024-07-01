@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HeartBug Enrolment Report (HER)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
@@ -15,11 +15,12 @@
             padding: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
         .container {
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 10px;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
             width: 100%;
@@ -27,7 +28,6 @@
             box-sizing: border-box;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
-            overflow-y: auto;
         }
         @keyframes popUp {
             0% { transform: scale(0.5); opacity: 0; }
@@ -37,19 +37,19 @@
             display: flex;
             align-items: center;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
         .header img {
-            width: 60px;
+            width: 50px;
             height: auto;
             border-radius: 15px;
-            margin-right: 20px;
+            margin-right: 10px;
             filter: drop-shadow(0 0 10px #00ffff);
         }
         .header h1 {
             color: #00ffff;
-            font-size: 20px;
+            font-size: 18px;
             margin: 0;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
@@ -67,23 +67,26 @@
             background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             overflow: hidden;
+            position: relative;
         }
         flowise-fullchatbot {
             width: 100%;
             height: 100%;
             font-size: 14px;
+            display: flex;
+            flex-direction: column;
         }
         .refresh-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 10px;
+            right: 10px;
             background-color: #00ffff;
             color: #0a0a2a;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -99,27 +102,21 @@
         }
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: 5px;
             }
             .header {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: center;
                 align-items: center;
                 text-align: center;
+                margin-bottom: 5px;
             }
             .header img {
-                width: 50px;
-                margin-right: 0;
-                margin-bottom: 10px;
+                width: 40px;
+                margin-right: 5px;
             }
             .header h1 {
-                font-size: 18px;
-            }
-            .refresh-button {
-                width: 35px;
-                height: 35px;
                 font-size: 16px;
-                bottom: 10px;
-                right: 10px;
             }
             flowise-fullchatbot {
                 font-size: 12px;
