@@ -9,15 +9,30 @@
             font-family: 'Arial, sans-serif';
             background-color: #f0f8ff;
             color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
         }
         .header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            width: 100%;
         }
         .header img {
-            max-width: 150px;
+            max-width: 100px;
             height: auto;
             border-radius: 10px;
             margin-right: 20px;
@@ -28,24 +43,15 @@
             font-size: 24px;
             margin: 0;
         }
-        .content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
-    <div class="content">
+    <div class="container">
         <div class="header">
-            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
+            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
             <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
         </div>
-        <flowise-fullchatbot></flowise-fullchatbot>
+        <flowise-fullchatbot style="width: 100%;"></flowise-fullchatbot>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
