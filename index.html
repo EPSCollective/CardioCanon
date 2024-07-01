@@ -2,38 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HeartBug Enrolment Report (HER)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-        body {
+        body, html {
             font-family: 'Orbitron', sans-serif;
             background-color: #0a0a2a;
             color: #00ffff;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
+            width: 100%;
             height: 100vh;
             overflow: hidden;
         }
         .container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            padding: 20px;
+            padding: 10px;
             background-color: rgba(10, 10, 42, 0.8);
-            border-radius: 20px;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            width: 90%;
-            max-width: 800px;
-            height: 90vh;
+            width: 100%;
+            height: 100%;
             box-sizing: border-box;
-            overflow-y: auto;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
-            position: relative;
         }
         @keyframes popUp {
             0% { transform: scale(0.5); opacity: 0; }
@@ -42,74 +36,119 @@
         .header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            flex-wrap: nowrap;
+            position: relative;
         }
         .header img {
-            width: 120px;
+            width: 80px;
             height: auto;
-            border-radius: 15px;
-            margin-right: 20px;
-            filter: drop-shadow(0 0 10px #00ffff);
+            border-radius: 10px;
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px #00ffff);
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 2px #00ffff); }
+            to { filter: drop-shadow(0 0 10px #00ffff); }
         }
         .header h1 {
             color: #00ffff;
-            font-size: 2.5vw;
+            font-size: 24px;
             margin: 0;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
+            flex: 1;
+            text-align: center;
         }
         @keyframes shine {
-            0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
-            100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            0% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
         }
         .chatbot-container {
             flex: 1;
             width: 100%;
-            overflow: hidden;
             border: 2px solid #00ffff;
             border-radius: 10px;
             background-color: rgba(0, 255, 255, 0.05);
+            display: flex;
+            overflow: hidden;
+            position: relative;
         }
         flowise-fullchatbot {
-            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 12px;
+        }
+        flowise-fullchatbot::part(chat-window) {
+            border-left: none;
+            border-right: none;
             height: 100%;
+            overflow-y: auto;
+        }
+        flowise-fullchatbot::part(chat-messages-container) {
+            padding-bottom: 60px; /* Add space for input box */
         }
         .refresh-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
             background-color: #00ffff;
             color: #0a0a2a;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             font-size: 24px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             transition: all 0.3s ease;
+            z-index: 1000;
+            line-height: 1;
+            margin-left: 10px;
         }
         .refresh-button:hover {
             background-color: #0a0a2a;
             color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
         }
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 5vw;
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .header {
+                margin-bottom: 20px;
             }
             .header img {
-                width: 80px;
+                width: 120px;
+                margin-right: 20px;
+            }
+            .header h1 {
+                font-size: 32px;
             }
             .refresh-button {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .header img {
+                width: 150px;
+            }
+            .header h1 {
+                font-size: 36px;
+            }
+            .refresh-button {
+                width: 60px;
+                height: 60px;
+                font-size: 32px;
             }
         }
     </style>
@@ -118,19 +157,45 @@
     <div class="container">
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
-            <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
+            <h1>HeartBug Enrolment Report</h1>
+            <button class="refresh-button" id="refresh-btn">↻</button>
         </div>
-        <div class="chatbot-container">
-            <flowise-fullchatbot></flowise-fullchatbot>
-        </div>
+        <div class="chatbot-container" id="chatbot-container"></div>
     </div>
-    <button class="refresh-button" onclick="location.reload()">↻</button>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        Chatbot.initFull({
-            chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
-            apiHost: "https://flowise-9t13.onrender.com",
-        })
+        
+        function createChatbot() {
+            const chatbotContainer = document.getElementById('chatbot-container');
+            chatbotContainer.innerHTML = '<flowise-fullchatbot></flowise-fullchatbot>';
+            
+            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            
+            Chatbot.initFull({
+                chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
+                apiHost: "https://flowise-9t13.onrender.com",
+                chatflowConfig: {
+                    sessionId: sessionId
+                },
+                container: "#chatbot-container flowise-fullchatbot"
+            });
+        }
+
+        function refreshChatbot() {
+            const chatbotContainer = document.getElementById('chatbot-container');
+            chatbotContainer.innerHTML = '';
+            setTimeout(createChatbot, 100);
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            createChatbot();
+
+            document.getElementById('refresh-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                refreshChatbot();
+            });
+        });
     </script>
 </body>
 </html>
+
