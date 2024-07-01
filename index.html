@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeartBug Enrolment Report (HER)</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
         body {
-            font-family: 'Arial, sans-serif';
-            background-color: #f0f8ff;
-            color: #333;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0a0a2a;
+            color: #00ffff;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -20,49 +22,71 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            padding: 20px;
+            background-color: rgba(10, 10, 42, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            width: 90%;
             max-width: 800px;
             height: 90vh;
             box-sizing: border-box;
             overflow-y: auto;
+            animation: popUp 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+        @keyframes popUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
         .header {
             display: flex;
             align-items: center;
             width: 100%;
+            margin-bottom: 20px;
         }
         .header img {
             max-width: 80px;
             height: auto;
             border-radius: 10px;
-            margin-right: 10px;
+            margin-right: 20px;
+            filter: drop-shadow(0 0 10px #00ffff);
         }
         .header h1 {
-            color: #ff6347;
-            font-family: 'Georgia, serif';
-            font-size: 20px;
+            color: #00ffff;
+            font-size: 2.5vw;
             margin: 0;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: shine 2s infinite linear;
+        }
+        @keyframes shine {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
         }
         .chatbot-container {
             flex: 1;
             width: 100%;
             overflow: hidden;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            background-color: rgba(0, 255, 255, 0.05);
         }
         flowise-fullchatbot {
             width: 100%;
             height: 100%;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 5vw;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
-            <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
+            <img src="/api/placeholder/80/80" alt="HeartBug Image">
+            <h1>Welcome to the HER (HeartBug Enrolment Report)</h1>
         </div>
         <div class="chatbot-container">
             <flowise-fullchatbot></flowise-fullchatbot>
