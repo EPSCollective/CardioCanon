@@ -14,17 +14,21 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         .container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px;
+            padding: 10px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
+            width: 100%;
             max-width: 800px;
+            height: 90vh;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
         .header {
             display: flex;
@@ -32,16 +36,25 @@
             width: 100%;
         }
         .header img {
-            max-width: 100px;
+            max-width: 80px;
             height: auto;
             border-radius: 10px;
-            margin-right: 20px;
+            margin-right: 10px;
         }
         .header h1 {
             color: #ff6347;
             font-family: 'Georgia, serif';
-            font-size: 24px;
+            font-size: 20px;
             margin: 0;
+        }
+        .chatbot-container {
+            flex: 1;
+            width: 100%;
+            overflow: hidden;
+        }
+        flowise-fullchatbot {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -51,7 +64,9 @@
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW%20TP.png?raw=true" alt="HeartBug Image">
             <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
         </div>
-        <flowise-fullchatbot style="width: 100%;"></flowise-fullchatbot>
+        <div class="chatbot-container">
+            <flowise-fullchatbot></flowise-fullchatbot>
+        </div>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
