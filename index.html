@@ -43,7 +43,7 @@
             position: relative;
         }
         .header img {
-            width: 40px;
+            width: 40px; /* Reduced width */
             height: auto;
             border-radius: 10px;
             margin-right: 10px;
@@ -56,7 +56,7 @@
         }
         .header h1 {
             color: #00ffff;
-            font-size: 18px;
+            font-size: 18px; /* Reduced font size */
             margin: 0;
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
@@ -78,44 +78,38 @@
             flex-direction: column;
             overflow: hidden;
             position: relative;
-            height: 10%; /* Set the height to 10% */
+            height: 20%; /* Set the height to 20% */
         }
-
         .chatbot-content {
             flex: 1;
             overflow-y: auto;
-            padding: 0;
+            padding: 10px;
+            height: 100%;
         }
         .chatbot-message {
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 5px;
             background-color: rgba(0, 255, 255, 0.1);
+            white-space: normal; /* Ensure message text wraps */
+            word-wrap: break-word; /* Break long words if necessary */
         }
         .chatbot-input {
             display: none; /* Hide the chatbot input */
         }
-        @media (min-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .header {
-                margin-bottom: 20px;
-            }
-            .header img {
-                width: 120px;
-                margin-right: 20px;
-            }
+        @media (max-width: 600px) {
             .header h1 {
-                font-size: 32px;
+                font-size: 16px; /* Adjust the font size for smaller screens */
+                white-space: normal; /* Allow the text to wrap */
             }
-        }
-        @media (min-width: 1024px) {
-            .header img {
-                width: 150px;
+
+            .chatbot-container {
+                height: 20%; /* Adjust the height for smaller screens */
             }
-            .header h1 {
-                font-size: 36px;
+
+            .chatbot-message {
+                white-space: normal; /* Ensure message text wraps */
+                word-wrap: break-word; /* Break long words if necessary */
             }
         }
     </style>
