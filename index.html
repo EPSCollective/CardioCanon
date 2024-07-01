@@ -11,10 +11,10 @@
             font-family: 'Orbitron', sans-serif;
             background-color: #0a0a2a;
             color: #00ffff;
-            margin: 0;
-            padding: 0;
+            margin: 5px;
+            padding: 5px;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             overflow: hidden;
         }
         .container {
@@ -23,10 +23,11 @@
             padding: 20px;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            width: 100%;
-            height: 100%;
+            width: 95%;
+            height: 95%;
             box-sizing: border-box;
             animation: popUp 0.5s ease-out;
+            transition: all 0.3s ease;
         }
         @keyframes popUp {
             0% { transform: scale(0.5); opacity: 0; }
@@ -36,8 +37,9 @@
             display: flex;
             align-items: center;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
+            position: relative;
         }
         .header img {
             width: 150px;
@@ -70,26 +72,48 @@
             border: 4px solid #00ffff;
             border-radius: 20px;
             background-color: rgba(0, 255, 255, 0.05);
+            display: flex;
             overflow: hidden;
             position: relative;
+            padding: 10px 0;
         }
-        #chatbot {
+        flowise-fullchatbot {
             position: absolute;
-            top: 0;
+            top: 20px;
             left: 0;
             right: 0;
-            bottom: 0;
+            bottom: 20px;
             font-size: 12px;
         }
-        #chatbot::part(chat-window) {
+        flowise-fullchatbot::part(chat-window) {
+            border-left: none;
+            border-right: none;
+        }
+        .refresh-button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #00ffff;
+            color: #0a0a2a;
             border: none;
-            padding-top: 20px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            line-height: 1;
         }
-        #chatbot::part(chatbot-container) {
-            height: 100%;
-        }
-        #chatbot::part(chat-messages-container) {
-            padding-top: 20px;
+        .refresh-button:hover {
+            background-color: #0a0a2a;
+            color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
         }
         @media (max-width: 768px) {
             .container {
@@ -110,6 +134,11 @@
             .header h1 {
                 font-size: 28px;
             }
+            .refresh-button {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
@@ -118,23 +147,40 @@
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
             <h1>HeartBug Enrolment Report</h1>
+            <button class="refresh-button" onclick="location.reload()">↻</button>
         </div>
         <div class="chatbot-container">
-            <flowise-fullchatbot id="chatbot"></flowise-fullchatbot>
+            <flowise-fullchatbot></flowise-fullchatbot>
         </div>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
-        document.addEventListener('DOMContentLoaded', (event) => {
+        function initChatbot() {
+            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            
+            const existingChatbot = document.querySelector('flowise-fullchatbot');
+            if (existingChatbot) {
+                existingChatbot.remove();
+            }
+
+            const newChatbot = document.createElement('flowise-fullchatbot');
+            document.querySelector('.chatbot-container').appendChild(newChatbot);
+
             Chatbot.initFull({
                 chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
                 apiHost: "https://flowise-9t13.onrender.com",
                 chatflowConfig: {
-                    sessionId: Date.now().toString(36) + Math.random().toString(36).substr(2)
-                },
-                container: "#chatbot"
-            });
+                    sessionId: sessionId
+                }
+            })
+        }
+
+        initChatbot();
+
+        document.querySelector('.refresh-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            initChatbot();
         });
     </script>
 </body>
