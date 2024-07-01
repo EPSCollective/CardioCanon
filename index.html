@@ -133,10 +133,40 @@
     <button class="refresh-button" onclick="location.reload()">↻</button>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        Chatbot.initFull({
-            chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
-            apiHost: "https://flowise-9t13.onrender.com",
-        })
+        
+        function initChatbot() {
+            // Generate a unique session ID
+            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            
+            // Remove any existing chatbot instance
+            const existingChatbot = document.querySelector('flowise-fullchatbot');
+            if (existingChatbot) {
+                existingChatbot.remove();
+            }
+
+            // Create a new chatbot instance
+            const newChatbot = document.createElement('flowise-fullchatbot');
+            document.querySelector('.chatbot-container').appendChild(newChatbot);
+
+            // Initialize the new chatbot with a unique session ID
+            Chatbot.initFull({
+                chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
+                apiHost: "https://flowise-9t13.onrender.com",
+                chatflowConfig: {
+                    // Use the session ID to ensure a fresh start
+                    sessionId: sessionId
+                }
+            })
+        }
+
+        // Initialize chatbot on page load
+        initChatbot();
+
+        // Reinitialize chatbot on refresh button click
+        document.querySelector('.refresh-button').addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default reload behavior
+            initChatbot();
+        });
     </script>
 </body>
 </html>
