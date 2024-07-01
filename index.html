@@ -15,8 +15,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
         }
         .container {
             display: flex;
@@ -30,7 +30,7 @@
             max-width: 800px;
             height: 90vh;
             box-sizing: border-box;
-            overflow: hidden;
+            overflow-y: auto;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
             position: relative;
@@ -46,7 +46,7 @@
             margin-bottom: 20px;
         }
         .header img {
-            width: 80px;
+            width: 120px;
             height: auto;
             border-radius: 15px;
             margin-right: 20px;
@@ -54,7 +54,7 @@
         }
         .header h1 {
             color: #00ffff;
-            font-size: 2vw;
+            font-size: 2.5vw;
             margin: 0;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
@@ -71,7 +71,6 @@
             border: 2px solid #00ffff;
             border-radius: 10px;
             background-color: rgba(0, 255, 255, 0.05);
-            display: flex;
         }
         flowise-fullchatbot {
             width: 100%;
@@ -101,16 +100,11 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
         }
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                height: 95vh;
-                padding: 10px;
-            }
             .header h1 {
-                font-size: 4vw;
+                font-size: 5vw;
             }
             .header img {
-                width: 60px;
+                width: 80px;
             }
             .refresh-button {
                 width: 40px;
@@ -124,7 +118,7 @@
     <div class="container">
         <div class="header">
             <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
-            <h1>HeartBug Enrolment Report</h1>
+            <h1>Welcome to HeartBug Enrolment Report (HER)</h1>
         </div>
         <div class="chatbot-container">
             <flowise-fullchatbot></flowise-fullchatbot>
@@ -133,40 +127,10 @@
     <button class="refresh-button" onclick="location.reload()">↻</button>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        
-        function initChatbot() {
-            // Generate a unique session ID
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            
-            // Remove any existing chatbot instance
-            const existingChatbot = document.querySelector('flowise-fullchatbot');
-            if (existingChatbot) {
-                existingChatbot.remove();
-            }
-
-            // Create a new chatbot instance
-            const newChatbot = document.createElement('flowise-fullchatbot');
-            document.querySelector('.chatbot-container').appendChild(newChatbot);
-
-            // Initialize the new chatbot with a unique session ID
-            Chatbot.initFull({
-                chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
-                apiHost: "https://flowise-9t13.onrender.com",
-                chatflowConfig: {
-                    // Use the session ID to ensure a fresh start
-                    sessionId: sessionId
-                }
-            })
-        }
-
-        // Initialize chatbot on page load
-        initChatbot();
-
-        // Reinitialize chatbot on refresh button click
-        document.querySelector('.refresh-button').addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default reload behavior
-            initChatbot();
-        });
+        Chatbot.initFull({
+            chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
+            apiHost: "https://flowise-9t13.onrender.com",
+        })
     </script>
 </body>
 </html>
