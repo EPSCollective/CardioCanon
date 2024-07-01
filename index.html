@@ -20,7 +20,7 @@
         .container {
             display: flex;
             flex-direction: column;
-            padding: 10px;
+            padding: 20px;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
             width: 100%;
@@ -38,15 +38,15 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             flex-wrap: nowrap;
             position: relative;
         }
         .header img {
-            width: 60px; /* Reduced width */
+            width: 80px;
             height: auto;
             border-radius: 10px;
-            margin-right: 10px;
+            margin-right: 20px;
             filter: drop-shadow(0 0 5px #00ffff);
             animation: glow 2s infinite alternate;
         }
@@ -56,7 +56,7 @@
         }
         .header h1 {
             color: #00ffff;
-            font-size: 20px; /* Reduced font size */
+            font-size: 28px;
             margin: 0;
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             animation: shine 2s infinite linear;
@@ -76,37 +76,35 @@
             background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
-            overflow: inherit;
+            overflow: hidden;
             position: relative;
-            height: 5%; /* Set the height to 5% */
         }
         .chatbot-content {
             flex: 1;
             overflow-y: auto;
-            padding: 0;
-            height: 55%;
+            padding: 20px;
         }
         .chatbot-message {
-            margin-bottom: 10px;
-            padding: 0;
+            margin-bottom: 15px;
+            padding: 10px;
             border-radius: 10px;
             background-color: rgba(0, 255, 255, 0.1);
-            white-space: normal; /* Ensure message text wraps */
-            word-wrap: break-word; /* Break long words if necessary */
+            word-wrap: break-word;
         }
         @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
             .header h1 {
-                font-size: 14px; /* Adjust the font size for smaller screens */
-                white-space: normal; /* Allow the text to wrap */
+                font-size: 20px;
             }
-
-            .chatbot-container {
-                height: 10%; /* Adjust the height for smaller screens */
-            }
-
-            .chatbot-message {
-                white-space: normal; /* Ensure message text wraps */
-                word-wrap: break-word; /* Break long words if necessary */
+            .container {
+                padding: 10px;
             }
         }
     </style>
@@ -118,8 +116,8 @@
             <h1>HeartBug Enrolment Report</h1>
         </div>
         <div class="chatbot-container">
-            <div class="chatbot-content" id="chatbot-content" style="height: 100%;">
-                <flowise-fullchatbot style="height: 100%;"></flowise-fullchatbot>
+            <div class="chatbot-content" id="chatbot-content">
+                <flowise-fullchatbot></flowise-fullchatbot>
             </div>
         </div>
     </div>
@@ -129,18 +127,6 @@
             chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
             apiHost: "https://flowise-9t13.onrender.com",
         })
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('chatbot-input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const message = e.target.value;
-                    if (message.trim() !== '') {
-                        // Handle message sending logic here if required
-                        e.target.value = '';
-                    }
-                }
-            });
-        });
     </script>
 </body>
 </html>
