@@ -168,7 +168,9 @@
             <div class="chatbot-header">
                 <button class="chatbot-refresh-button" id="chatbot-refresh">↻ Refresh Chatbot</button>
             </div>
-            <div class="chatbot-content" id="chatbot-content"></div>
+            <div class="chatbot-content" id="chatbot-content">
+                <flowise-fullchatbot></flowise-fullchatbot>
+            </div>
             <div class="chatbot-footer">
                 <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message here...">
             </div>
@@ -176,60 +178,12 @@
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        
-        let chatbot;
-        let isInitialMessage = true;
-
-        function createChatbot() {
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            
-            chatbot = new Chatbot({
-                chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
-                apiHost: "https://flowise-9t13.onrender.com",
-                chatflowConfig: {
-                    sessionId: sessionId
-                }
-            });
-
-            // Trigger initial message
-            sendMessage("");
-        }
-
-        function sendMessage(message) {
-            chatbot.sendMessage(message)
-                .then(response => {
-                    if (isInitialMessage) {
-                        handleInitialMessage(response);
-                    } else {
-                        displayMessage(message, 'user');
-                        displayMessage(response, 'bot');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        function handleInitialMessage(response) {
-            const initialMessages = response.split('\n');
-            initialMessages.forEach(msg => {
-                if (msg.trim() !== '') {
-                    displayMessage(msg, 'bot');
-                }
-            });
-            isInitialMessage = false;
-        }
-
-        function displayMessage(message, sender) {
-            const contentDiv = document.getElementById('chatbot-content');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chatbot-message';
-            messageDiv.textContent = `${sender === 'bot' ? 'Bot' : 'You'}: ${message}`;
-            contentDiv.appendChild(messageDiv);
-            contentDiv.scrollTop = contentDiv.scrollHeight;
-        }
+        Chatbot.initFull({
+            chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
+            apiHost: "https://flowise-9t13.onrender.com",
+        })
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            createChatbot();
-
             document.getElementById('refresh-btn').addEventListener('click', (e) => {
                 e.preventDefault();
                 location.reload();
@@ -237,16 +191,14 @@
 
             document.getElementById('chatbot-refresh').addEventListener('click', (e) => {
                 e.preventDefault();
-                document.getElementById('chatbot-content').innerHTML = '';
-                isInitialMessage = true;
-                createChatbot();
+                location.reload();
             });
 
             document.getElementById('chatbot-input').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     const message = e.target.value;
                     if (message.trim() !== '') {
-                        sendMessage(message);
+                        // Handle message sending logic here if required
                         e.target.value = '';
                     }
                 }
