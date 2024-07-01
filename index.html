@@ -156,41 +156,39 @@
             <h1>HeartBug Enrolment Report</h1>
             <button class="refresh-button" id="refresh-btn">↻</button>
         </div>
-        <div class="chatbot-container">
-            <flowise-fullchatbot id="chatbot"></flowise-fullchatbot>
-        </div>
+        <div class="chatbot-container" id="chatbot-container"></div>
     </div>
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
-        let chatbotInstance = null;
-
-        function initChatbot() {
+        function createChatbot() {
+            const chatbotContainer = document.getElementById('chatbot-container');
+            chatbotContainer.innerHTML = '<flowise-fullchatbot></flowise-fullchatbot>';
+            
             const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
             
-            if (chatbotInstance) {
-                chatbotInstance.destroy();
-            }
-
-            const chatbotContainer = document.getElementById('chatbot');
-            chatbotContainer.innerHTML = '';
-
-            chatbotInstance = Chatbot.initFull({
+            Chatbot.initFull({
                 chatflowid: "8596a810-0480-4e1c-8812-ffe8860dcb3f",
                 apiHost: "https://flowise-9t13.onrender.com",
                 chatflowConfig: {
                     sessionId: sessionId
                 },
-                container: "#chatbot"
+                container: "#chatbot-container flowise-fullchatbot"
             });
         }
 
+        function refreshChatbot() {
+            const chatbotContainer = document.getElementById('chatbot-container');
+            chatbotContainer.innerHTML = '';
+            setTimeout(createChatbot, 100);
+        }
+
         document.addEventListener('DOMContentLoaded', (event) => {
-            initChatbot();
+            createChatbot();
 
             document.getElementById('refresh-btn').addEventListener('click', (e) => {
                 e.preventDefault();
-                initChatbot();
+                refreshChatbot();
             });
         });
     </script>
