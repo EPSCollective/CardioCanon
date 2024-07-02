@@ -35,18 +35,21 @@
         }
         .header {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             width: 100%;
             margin-bottom: 20px;
-            text-align: center;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
         }
         .header img {
             width: 90px;
             height: auto;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-right: 20px;
             filter: drop-shadow(0 0 40px #00ffff);
             animation: glow 2s infinite alternate;
         }
@@ -57,7 +60,7 @@
         .header-text {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
         }
         .header-text p {
             margin: 5px 0;
@@ -65,6 +68,7 @@
             color: #00ffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             animation: glow 2s infinite alternate;
+            text-align: left;
         }
         .chatbot-container {
             flex: 1;
@@ -102,11 +106,21 @@
             .container {
                 padding: 5px;
             }
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
             .header img {
                 width: 60px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .header-text {
+                align-items: center;
             }
             .header-text p {
                 font-size: 18px;
+                text-align: center;
             }
             .chatbot-container {
                 border-width: 0;
@@ -121,10 +135,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
-            <div class="header-text">
-                <p>HeartBug Enrolment Report</p>
-                <p><< Jan 2023 - Jul 2024 >></p>
+            <div class="header-content">
+                <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
+                <div class="header-text">
+                    <p>HeartBug Enrolment Report</p>
+                    <p><< Jan 2023 - Jul 2024 >></p>
+                </div>
             </div>
         </div>
         <div class="chatbot-container">
