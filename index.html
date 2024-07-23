@@ -5,133 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cardiology Canon</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
-
-        :root {
-            --primary-bg: #0a0a2a;
-            --secondary-bg: #1E1E3F;
-            --accent-color: #00BFFF;
-            --text-color: #FFFFFF;
-            --chatbot-bg: #E6F3FF;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
         body, html {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0a0a2a;
+            color: #00ffff;
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            height: 95vh;
+            overflow: auto;
         }
-
         .container {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+            padding: 20px;
+            background-color: rgba(10, 10, 42, 0.8);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            width: 100%;
+            height: 95%;
+            box-sizing: border-box;
+            animation: popUp 0.5s ease-out;
+            transition: all 0.3s ease;
         }
-
+        @keyframes popUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
-            padding: 15px 30px;
-            background-color: rgba(0, 191, 255, 0.1);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px rgba(0, 191, 255, 0.2);
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
-
         .header-content {
             display: flex;
             align-items: center;
         }
-
         .header img {
-            height: 60px;
-            width: auto;
-            border-radius: 50%;
+            width: 90px;
+            height: auto;
+            border-radius: 15px;
             margin-right: 20px;
-            box-shadow: 0 0 15px var(--accent-color);
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 40px #00ffff);
+            animation: glow 2s infinite alternate;
         }
-
-        .header img:hover {
-            transform: scale(1.1);
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px #00ffff); }
+            to { filter: drop-shadow(0 0 40px #00ffff); }
         }
-
         .header-text {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
-
         .header-text p {
-            margin: 0;
-            font-family: 'Orbitron', sans-serif;
+            margin: 5px 0;
+            font-size: 24px;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+            text-align: left;
         }
-
-        .header-text p:first-child {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-        }
-
-        .header-text p:last-child {
-            font-size: 14px;
-            color: #B0E0E6;
-            font-style: italic;
-        }
-
         .chatbot-container {
             flex: 1;
+            width: 100%;
+            border: 4px solid #00ffff;
+            border-radius: 15px;
+            background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            margin: 20px;
-            box-shadow: 0 0 20px var(--accent-color), inset 0 0 20px var(--accent-color);
-            animation: glowingBorder 3s infinite alternate;
-            background-color: var(--chatbot-bg);
-            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: borderGlow 2s infinite alternate;
         }
-
-        .chatbot-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 30px var(--accent-color), inset 0 0 30px var(--accent-color);
+        @keyframes borderGlow {
+            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            to { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
         }
-
-        @keyframes glowingBorder {
-            from { box-shadow: 0 0 10px var(--accent-color), inset 0 0 10px var(--accent-color); }
-            to { box-shadow: 0 0 30px var(--accent-color), inset 0 0 30px var(--accent-color); }
+        .chatbot-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            margin: 5px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
         }
-
+        .chatbot-message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(0, 255, 255, 0.1);
+            word-wrap: break-word;
+        }
         @media (max-width: 768px) {
+            .container {
+                padding: 5px;
+            }
             .header {
-                padding: 10px 15px;
-                flex-direction: column;
+                justify-content: flex-start;
+                padding: 0 10px;
+            }
+            .header-content {
+                flex-direction: row;
+                align-items: center;
+            }
+            .header img {
+                width: 60px;
+                margin-right: 10px;
+            }
+            .header-text {
                 align-items: flex-start;
             }
-
-            .header img {
-                height: 40px;
-                margin-right: 10px;
-                margin-bottom: 10px;
+            .header-text p {
+                font-size: 16px;
+                text-align: left;
             }
-
-            .header-text p:first-child {
-                font-size: 20px;
-            }
-
-            .header-text p:last-child {
-                font-size: 12px;
-            }
-
             .chatbot-container {
-                margin: 10px;
+                border-width: 0;
+            }
+            .chatbot-content {
+                padding: 10px;
+                margin: 2px;
             }
         }
     </style>
@@ -143,113 +143,22 @@
                 <img src="https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true" alt="HeartBug Image">
                 <div class="header-text">
                     <p>Cardiology Canon</p>
-                    <p>'your friendly assistant on your meander through cardiology literature'</p>
+                    <p>'your friendly assistant on your meander through cardiology literature...'</p>
                 </div>
             </div>
         </div>
         <div class="chatbot-container">
-            <flowise-fullchatbot></flowise-fullchatbot>
+            <div class="chatbot-content" id="chatbot-content">
+                <flowise-fullchatbot></flowise-fullchatbot>
+            </div>
         </div>
     </div>
-    <script type="module">
-        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        Chatbot.initFull({
-            chatflowid: "a557d0c9-6925-4d56-98c4-3bef16d1ff09",
-            apiHost: "https://flowise-9t13.onrender.com",
-            theme: {
-                chatWindow: {
-                    welcomeMessage: "Welcome to Cardiology Canon! How can I assist you today?",
-                    backgroundColor: "var(--chatbot-bg)",
-                    height: '100%',
-                    width: '100%',
-                    fontSize: 16,
-                    poweredByTextColor: "#303235",
-                    botMessage: {
-                        backgroundColor: "#FFFFFF",
-                        textColor: "#000000",
-                        showAvatar: true,
-                        avatarSrc: "https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true",
-                    },
-                    userMessage: {
-                        backgroundColor: "var(--accent-color)",
-                        textColor: "#FFFFFF",
-                        showAvatar: true,
-                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
-                    },
-                    textInput: {
-                        placeholder: 'Ask about cardiology...',
-                        backgroundColor: '#FFFFFF',
-                        textColor: '#000000',
-                        sendButtonColor: 'var(--accent-color)',
-                    },
-                },
-            },
-            customCSS: `
-                .chatbot-container { 
-                    border-radius: 15px; 
-                    overflow: hidden; 
-                    display: flex;
-                    flex-direction: column;
-                }
-                .chatbot-branding { display: none !important; }
-                .conversation-container { 
-                    flex: 1;
-                    overflow-y: auto !important; 
-                    color: #000000 !important;
-                    padding: 20px;
-                }
-                .conversation-container > div:first-child { height: auto !important; }
-                .markdown-wrapper * { color: #000000 !important; }
-                .markdown-wrapper pre { 
-                    background-color: #F0F8FF !important;
-                    border-radius: 8px;
-                    padding: 10px;
-                    overflow-x: auto;
-                }
-                .markdown-wrapper code { 
-                    color: #0000FF !important;
-                    font-family: 'Courier New', monospace;
-                }
-                .user-message, .bot-message {
-                    border-radius: 15px;
-                    padding: 10px 15px;
-                    margin-bottom: 10px;
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                    max-width: 80%;
-                }
-                .user-message { align-self: flex-end; }
-                .bot-message { align-self: flex-start; }
-                .input-container { 
-                    background-color: #FFFFFF;
-                    border-top: 1px solid #E0E0E0;
-                    padding: 10px;
-                    position: sticky;
-                    bottom: 0;
-                }
-                .input-container textarea {
-                    border: 1px solid #E0E0E0;
-                    border-radius: 20px;
-                    padding: 10px 15px;
-                    resize: none;
-                }
-                .input-container button {
-                    background-color: var(--accent-color);
-                    color: #FFFFFF;
-                    border: none;
-                    border-radius: 50%;
-                    width: 40px;
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                }
-                .input-container button:hover {
-                    background-color: #0099CC;
-                }
-            `
-        })
+   <script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    Chatbot.init({
+        chatflowid: "a557d0c9-6925-4d56-98c4-3bef16d1ff09",
+        apiHost: "https://flowise-9t13.onrender.com",
+    })
     </script>
 </body>
 </html>
