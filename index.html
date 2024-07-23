@@ -64,7 +64,7 @@
             overflow: hidden;
             border: 2px solid #00ffff;
             border-radius: 10px;
-            margin: 10px;
+            margin: 20px;
             box-shadow: 0 0 20px #00ffff, inset 0 0 20px #00ffff;
             animation: glowingBorder 2s infinite alternate;
         }
@@ -87,9 +87,9 @@
             padding: 10px;
             background-color: #0a0a2a;
         }
-        /* Ensure all text in the chatbot is white */
+        /* Ensure all text in the chatbot is dark blue */
         .chatbot-container * {
-            color: #ffffff !important;
+            color: #00008B !important;
         }
         @media (max-width: 768px) {
             .header {
@@ -103,6 +103,9 @@
             }
             .header-text p:first-child {
                 font-size: 18px;
+            }
+            .chatbot-container {
+                margin: 10px;
             }
         }
     </style>
@@ -135,27 +138,31 @@
                     width: '100%',
                     fontSize: 16,
                     botMessage: {
-                        backgroundColor: "#1a1a4a",
-                        textColor: "#ffffff",
+                        backgroundColor: "#ffffff",
+                        textColor: "#00008B",
                         showAvatar: true,
                         avatarSrc: "https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true",
                     },
                     userMessage: {
-                        backgroundColor: "#1a1a4a",
-                        textColor: "#ffffff",
+                        backgroundColor: "#ffffff",
+                        textColor: "#00008B",
                         showAvatar: true,
                         avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
                     },
                     textInput: {
                         placeholder: 'Ask about cardiology...',
-                        backgroundColor: '#1a1a4a',
-                        textColor: '#ffffff',
-                        sendButtonColor: '#ffffff',
+                        backgroundColor: '#ffffff',
+                        textColor: '#00008B',
+                        sendButtonColor: '#00008B',
                     },
                 },
             },
-            // Remove 'Powered by Flowise' text
-            customCSS: ".chatbot-branding { display: none !important; }"
+            // Remove 'Powered by Flowise' text and ensure scrolling
+            customCSS: `
+                .chatbot-branding { display: none !important; }
+                .conversation-container { max-height: calc(100% - 60px) !important; overflow-y: auto !important; }
+                .conversation-container > div:first-child { height: auto !important; }
+            `
         })
     </script>
 </body>
