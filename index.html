@@ -23,12 +23,6 @@
             height: 100vh;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            animation: popUp 0.5s ease-out;
-            transition: all 0.3s ease;
-        }
-        @keyframes popUp {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
         }
         .header {
             display: flex;
@@ -36,6 +30,7 @@
             align-items: center;
             padding: 10px 20px;
             background-color: rgba(0, 255, 255, 0.1);
+            z-index: 10;
         }
         .header-content {
             display: flex;
@@ -47,11 +42,6 @@
             border-radius: 10px;
             margin-right: 15px;
             filter: drop-shadow(0 0 10px #00ffff);
-            animation: glow 2s infinite alternate;
-        }
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px #00ffff); }
-            to { filter: drop-shadow(0 0 15px #00ffff); }
         }
         .header-text {
             display: flex;
@@ -73,6 +63,21 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+        }
+        /* Custom styles to override Flowise defaults */
+        .chatbot-container > div {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .chatbot-container > div > div:nth-child(2) {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .chatbot-container > div > div:last-child {
+            padding: 10px;
+            background-color: #0a0a2a;
         }
         @media (max-width: 768px) {
             .header {
@@ -136,11 +141,6 @@
                         textColor: '#ffffff',
                         sendButtonColor: '#ffffff',
                     },
-                },
-                chatHistory: {
-                    maxHeight: 'calc(100vh - 180px)', // Adjust based on your header height and input field height
-                    overflowY: 'auto',
-                    padding: '20px',
                 },
             }
         })
