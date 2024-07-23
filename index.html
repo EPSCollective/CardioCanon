@@ -14,49 +14,44 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 95vh;
-            overflow: auto;
+            height: 100vh;
+            overflow: hidden;
         }
         .container {
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            height: 100vh;
             background-color: rgba(10, 10, 42, 0.8);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            width: 100%;
-            height: 95%;
-            box-sizing: border-box;
             animation: popUp 0.5s ease-out;
             transition: all 0.3s ease;
         }
         @keyframes popUp {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         .header {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 0 20px;
-            box-sizing: border-box;
+            padding: 10px 20px;
+            background-color: rgba(0, 255, 255, 0.1);
         }
         .header-content {
             display: flex;
             align-items: center;
         }
         .header img {
-            width: 90px;
+            width: 50px;
             height: auto;
-            border-radius: 15px;
-            margin-right: 20px;
-            filter: drop-shadow(0 0 40px #00ffff);
+            border-radius: 10px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 10px #00ffff);
             animation: glow 2s infinite alternate;
         }
         @keyframes glow {
             from { filter: drop-shadow(0 0 5px #00ffff); }
-            to { filter: drop-shadow(0 0 40px #00ffff); }
+            to { filter: drop-shadow(0 0 15px #00ffff); }
         }
         .header-text {
             display: flex;
@@ -64,74 +59,33 @@
             align-items: flex-start;
         }
         .header-text p {
-            margin: 5px 0;
-            font-size: 24px;
+            margin: 0;
+            font-size: 18px;
             color: #00ffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            animation: glow 2s infinite alternate;
-            text-align: left;
+        }
+        .header-text p:first-child {
+            font-size: 24px;
+            font-weight: bold;
         }
         .chatbot-container {
             flex: 1;
-            width: 100%;
-            border: 4px solid #00ffff;
-            border-radius: 15px;
-            background-color: rgba(0, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            animation: borderGlow 2s infinite alternate;
-        }
-        @keyframes borderGlow {
-            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
-            to { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
-        }
-        .chatbot-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-            margin: 5px;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-        .chatbot-message {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: rgba(0, 255, 255, 0.1);
-            word-wrap: break-word;
         }
         @media (max-width: 768px) {
-            .container {
-                padding: 5px;
-            }
             .header {
-                justify-content: flex-start;
-                padding: 0 10px;
-            }
-            .header-content {
-                flex-direction: row;
-                align-items: center;
+                padding: 5px 10px;
             }
             .header img {
-                width: 60px;
-                margin-right: 10px;
-            }
-            .header-text {
-                align-items: flex-start;
+                width: 40px;
             }
             .header-text p {
-                font-size: 16px;
-                text-align: left;
+                font-size: 14px;
             }
-            .chatbot-container {
-                border-width: 0;
-            }
-            .chatbot-content {
-                padding: 10px;
-                margin: 2px;
+            .header-text p:first-child {
+                font-size: 18px;
             }
         }
     </style>
@@ -148,67 +102,43 @@
             </div>
         </div>
         <div class="chatbot-container">
-            <div class="chatbot-content" id="chatbot-content">
-                <flowise-fullchatbot></flowise-fullchatbot>
-            </div>
+            <flowise-fullchatbot></flowise-fullchatbot>
         </div>
     </div>
-    <flowise-fullchatbot></flowise-fullchatbot>
-<script type="module">
-    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-    Chatbot.initFull({
-        chatflowid: "a557d0c9-6925-4d56-98c4-3bef16d1ff09",
-        apiHost: "https://flowise-9t13.onrender.com",
-        theme: {
-            chatWindow: {
-                showTitle: true,
-                title: 'Flowise Bot',
-                titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-                showAgentMessages: true,
-                welcomeMessage: 'Hello! This is custom welcome message',
-                errorMessage: 'This is a custom error message',
-                backgroundColor: "#ffffff",
-                height: 700,
-                width: 400,
-                fontSize: 16,
-                poweredByTextColor: "#303235",
-                botMessage: {
-                    backgroundColor: "#f7f8ff",
-                    textColor: "#303235",
-                    showAvatar: true,
-                    avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
-                },
-                userMessage: {
-                    backgroundColor: "#3B81F6",
-                    textColor: "#ffffff",
-                    showAvatar: true,
-                    avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
-                },
-                textInput: {
-                    placeholder: 'Type your question',
-                    backgroundColor: '#ffffff',
-                    textColor: '#303235',
-                    sendButtonColor: '#3B81F6',
-                    maxChars: 50,
-                    maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-                    autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
-                    sendMessageSound: true,
-                    // sendSoundLocation: "send_message.mp3", // If this is not used, the default sound effect will be played if sendSoundMessage is true.
-                    receiveMessageSound: true,
-                    // receiveSoundLocation: "receive_message.mp3", // If this is not used, the default sound effect will be played if receiveSoundMessage is true. 
-                },
-                feedback: {
-                    color: '#303235',
-                },
-                footer: {
-                    textColor: '#303235',
-                    text: 'Powered by',
-                    company: 'Flowise',
-                    companyLink: 'https://flowiseai.com',
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.initFull({
+            chatflowid: "a557d0c9-6925-4d56-98c4-3bef16d1ff09",
+            apiHost: "https://flowise-9t13.onrender.com",
+            theme: {
+                chatWindow: {
+                    welcomeMessage: "Welcome to Cardiology Canon! How can I assist you today?",
+                    backgroundColor: "#0a0a2a",
+                    height: '100%',
+                    width: '100%',
+                    fontSize: 16,
+                    poweredByTextColor: "#00ffff",
+                    botMessage: {
+                        backgroundColor: "#1a1a4a",
+                        textColor: "#00ffff",
+                        showAvatar: true,
+                        avatarSrc: "https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true",
+                    },
+                    userMessage: {
+                        backgroundColor: "#3B81F6",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: 'Ask about cardiology...',
+                        backgroundColor: '#1a1a4a',
+                        textColor: '#00ffff',
+                        sendButtonColor: '#00ffff',
+                    },
                 }
             }
-        }
-    })
+        })
     </script>
 </body>
 </html>
