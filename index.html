@@ -117,10 +117,10 @@
                     height: '100%',
                     width: '100%',
                     fontSize: 16,
-                    poweredByTextColor: "#00ffff",
+                    poweredByTextColor: "#80ffff",
                     botMessage: {
                         backgroundColor: "#1a1a4a",
-                        textColor: "#00ffff",
+                        textColor: "#e6ffff",
                         showAvatar: true,
                         avatarSrc: "https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true",
                     },
@@ -133,9 +133,13 @@
                     textInput: {
                         placeholder: 'Ask about cardiology...',
                         backgroundColor: '#1a1a4a',
-                        textColor: '#00ffff',
-                        sendButtonColor: '#00ffff',
+                        textColor: '#e6ffff',
+                        sendButtonColor: '#80ffff',
                     },
+                    chatHistory: {
+                        maxHeight: 'calc(100vh - 100px)', // Adjust based on your header height
+                        overflowY: 'auto',
+                    }
                 }
             }
         })
