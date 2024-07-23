@@ -22,7 +22,6 @@
             flex-direction: column;
             height: 100vh;
             background-color: rgba(10, 10, 42, 0.8);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
         }
         .header {
             display: flex;
@@ -63,6 +62,15 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 0 20px #00ffff, inset 0 0 20px #00ffff;
+            animation: glowingBorder 2s infinite alternate;
+        }
+        @keyframes glowingBorder {
+            from { box-shadow: 0 0 10px #00ffff, inset 0 0 10px #00ffff; }
+            to { box-shadow: 0 0 30px #00ffff, inset 0 0 30px #00ffff; }
         }
         /* Custom styles to override Flowise defaults */
         .chatbot-container > div {
@@ -78,6 +86,10 @@
         .chatbot-container > div > div:last-child {
             padding: 10px;
             background-color: #0a0a2a;
+        }
+        /* Ensure all text in the chatbot is white */
+        .chatbot-container * {
+            color: #ffffff !important;
         }
         @media (max-width: 768px) {
             .header {
@@ -122,7 +134,6 @@
                     height: '100%',
                     width: '100%',
                     fontSize: 16,
-                    poweredByTextColor: "#ffffff",
                     botMessage: {
                         backgroundColor: "#1a1a4a",
                         textColor: "#ffffff",
@@ -142,7 +153,9 @@
                         sendButtonColor: '#ffffff',
                     },
                 },
-            }
+            },
+            // Remove 'Powered by Flowise' text
+            customCSS: ".chatbot-branding { display: none !important; }"
         })
     </script>
 </body>
