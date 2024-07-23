@@ -10,7 +10,7 @@
         body, html {
             font-family: 'Orbitron', sans-serif;
             background-color: #0a0a2a;
-            color: #00ffff;
+            color: #ffffff;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -61,7 +61,7 @@
         .header-text p {
             margin: 0;
             font-size: 18px;
-            color: #00ffff;
+            color: #ffffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         .header-text p:first-child {
@@ -117,15 +117,15 @@
                     height: '100%',
                     width: '100%',
                     fontSize: 16,
-                    poweredByTextColor: "#80ffff",
+                    poweredByTextColor: "#ffffff",
                     botMessage: {
                         backgroundColor: "#1a1a4a",
-                        textColor: "#e6ffff",
+                        textColor: "#ffffff",
                         showAvatar: true,
                         avatarSrc: "https://github.com/BarOfSoapOnWednesday/HER-Chatbot/blob/main/HeartBug_404%20for%20T-shirt%20BW.png?raw=true",
                     },
                     userMessage: {
-                        backgroundColor: "#3B81F6",
+                        backgroundColor: "#1a1a4a",
                         textColor: "#ffffff",
                         showAvatar: true,
                         avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
@@ -133,14 +133,15 @@
                     textInput: {
                         placeholder: 'Ask about cardiology...',
                         backgroundColor: '#1a1a4a',
-                        textColor: '#e6ffff',
-                        sendButtonColor: '#80ffff',
+                        textColor: '#ffffff',
+                        sendButtonColor: '#ffffff',
                     },
-                    chatHistory: {
-                        maxHeight: 'calc(100vh - 100px)', // Adjust based on your header height
-                        overflowY: 'auto',
-                    }
-                }
+                },
+                chatHistory: {
+                    maxHeight: 'calc(100vh - 180px)', // Adjust based on your header height and input field height
+                    overflowY: 'auto',
+                    padding: '20px',
+                },
             }
         })
     </script>
